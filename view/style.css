@@ -1,0 +1,531 @@
+/* GLOBAL RESET */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY & LAYOUT */
+body {
+    background-color: #bebcbc;
+    /* nền sáng dịu mắt */
+    height: 100vh;
+}
+
+body.center-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTAINER – LOGIN / REGISTER */
+.container {
+    background: #f5f5f5;
+    /* sáng hơn */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 15px 25px 45px rgba(0, 0, 0, 0.702);
+    width: 320px;
+    text-align: center;
+    transition: background-color 0.8s ease;
+    animation-name: test;
+
+}
+
+.container.login-bg {
+    background-color: #ffffffaa;
+    transition:
+        background-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.container.register-bg {
+    background-color: #f0f0f0aa;
+    box-shadow: 15px 25px 45px rgba(80, 89, 255, 0.702);
+    transition:
+        background-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* ANIMATION */
+@keyframes test {
+    from {
+        background-color: #f5f5f5;
+    }
+
+    to {
+        background-color: #3cf1eb;
+    }
+}
+
+/* TYPOGRAPHY – H2 / INPUT / BUTTON / LINK */
+h2 {
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #87cefa;
+    /* xanh nhạt */
+    color: #000000;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #7ec0ee;
+    transition-duration: 0.3s;
+}
+
+.link {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* MAIN / HEADER / MENU / MAIN-CONTENT */
+#main {
+    width: 100%;
+    height: 100vh;
+    display: block;
+}
+
+.header {
+    color: #000000;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    /* sáng hơn */
+    padding: 0 35px;
+    border-bottom: 0.8px solid #d3d3d3;
+}
+
+.header h2 {
+    margin-top: 20px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#logoutBtn {
+    color: #000000;
+    margin: auto;
+    position: absolute;
+    transform: scale(0.8);
+    right: 20px;
+    background-color: #87cefa;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+#logoutBtn:hover {
+    background-color: #7ec0ee;
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.menu {
+    background-color: #f0f0f0;
+    font-size: 20px;
+    height: 100vh;
+    padding-top: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 0.8px solid #d3d3d3;
+}
+
+.menu a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 12px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background-color: hsl(0, 0%, 58%);
+    /* sáng hơn khi hover */
+}
+
+/* CONTENT-AREA + FORM NHẬP CHI TIÊU */
+.content-area {
+    display: flex;
+    background-color: #f0f0f0;
+    /* sáng hơn */
+    flex: 1;
+}
+
+.content-area .container {
+    margin: 20px 40px;
+    height: 400px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    gap: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+}
+
+#expenseNameInput,
+#expenseInput,
+#dateInput {
+    height: 60px;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.info-box .item {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.info-box h2 {
+    color: #000000;
+    border-bottom: #d3d3d3 0.3px solid;
+}
+
+.add-expense-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #87cefa;
+    color: #000000;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-expense-btn:hover {
+    background-color: #7ec0ee;
+}
+
+/* EXPENSE LIST – ITEM – DELETE BUTTON */
+.expense-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: 10px 40px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border-bottom: #d3d3d3 0.3px solid;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.expense-list-container h2 {
+    color: #000000;
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: start;
+    padding-left: 10px;
+}
+
+.day-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.date-col {
+    width: 120px;
+    font-weight: bold;
+    color: #333333;
+    padding-right: 15px;
+    text-align: left;
+}
+
+.day-title {
+    margin: 0;
+    font-size: 18px;
+    color: #000000;
+}
+
+.expenses-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background: #f0f0f0;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    cursor: default;
+}
+
+.expense-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 25px;
+    /*chừa chỗ cho nút xoá xuất hiện */
+    transition: all 0.25s ease;
+}
+
+/* Khi item được click → điều khiển bằng class */
+.expense-item.active .exp-amount {
+    transform: translateX(-20px);
+    transition: transform 0.25s ease;
+}
+
+/* Nút xoá */
+.delete-btn {
+    position: absolute;
+    right: 10px;
+    top: 25%;
+    transform: translateY(-50%) translateX(20px);
+    /* ban đầu trượt ra ngoài */
+    background: #ff4d4d;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.25s ease;
+}
+
+.expense-item.active .delete-btn {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* TOTALS BOX */
+.totals-container {
+    width: 300px;
+    margin-left: -10px;
+    background: #ffffff;
+    margin-top: 40px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+}
+
+.totals-container h2 {
+    border-bottom: 1px solid #d3d3d3;
+    margin-bottom: 10px;
+    color: #000000;
+    font-size: 18px;
+}
+
+.totals-container p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+/* ALERT BOX + CONFIRM BOX */
+.alert {
+    background: #fff8e7;
+    /* vàng nhạt nổi bật */
+    color: #8f6a6a;
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: 1px solid #d6e9c6;
+    width: 90%;
+    max-width: 600px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    z-index: 999;
+}
+
+.alert.hidden {
+    display: none;
+}
+
+.alert #alertMessage {
+    flex: 1;
+    text-align: center;
+}
+
+.alert .close-btn {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+#confirmBox {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff8e7; /* nền vàng nhạt */
+    color: #8f6a6a;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 1px solid #d6e9c6;
+    width: auto;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+}
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+#confirmBox button {
+    width: 50px;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0;
+    font-weight: bold;
+}
+
+    
+
+#confirmYes {
+    background-color: #ff0b0b;
+    color: #ffffff;
+    border: none;
+}
+
+#confirmNo {
+    background-color: #ccc;
+    color: #000;
+    border: none;
+}
+
+
+
+
+
+/* RESPONSIVE (MEDIA QUERIES) */
+@media (max-width: 768px) {
+
+    /* Layout tổng thể dọc */
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+        /* canh giữa toàn bộ */
+    }
+
+    /* Menu nằm ngang hoặc dọc tuỳ nội dung */
+    .menu {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+        text-align: center;
+        flex-wrap: wrap;
+        /* wrap nếu nhiều link */
+    }
+
+    /* Container trong content-area */
+    .content-area {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .content-area .container {
+        width: 90%;
+        margin: 10px auto;
+        height: auto;
+        /* để co giãn theo nội dung */
+    }
+
+    /* Expense list container */
+    .expense-list-container {
+        width: 90%;
+        margin: 10px auto;
+        height: auto;
+        /* tránh 100vh → không chồng lên */
+    }
+
+    /* Totals container */
+    .totals-container {
+        width: 90%;
+        margin: 20px auto;
+        height: auto;
+    }
+
+    /* Nút logout */
+    #logoutBtn {
+        position: absolute;
+        transform: scale(0.8);
+        width: 20%;
+        margin: 10px auto;
+    }
+
+    @media (max-width: 768px) {
+        #confirmBox {
+            width: 80%;
+            max-width: none;
+        }
+    }
+}
+
+
