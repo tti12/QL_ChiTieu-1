@@ -8,6 +8,86 @@
     <link rel="stylesheet" href="/QL_chitieu/view/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ===========================
+   Mobile Responsive
+   =========================== */
+@media (max-width: 768px) {
+
+    /* Header */
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    #logoutBtn {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    /* Layout tổng */
+    .main-content {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    /* Menu dọc trên mobile */
+    .menu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .menu a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        font-size: 17px;
+    }
+
+    /* Chart container */
+    .content-area {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .chart-container {
+        width: 100% !important;
+        height: auto !important;
+        margin: 10px 0 !important;
+    }
+
+    canvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+}
+
+/* ===========================
+   Mobile nhỏ ≤ 480px
+   =========================== */
+@media (max-width: 480px) {
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .menu a {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    #logoutBtn {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+    </style>
 
 </head>
 
@@ -21,7 +101,7 @@
     </div>
     <div class="main-content">
         <div class="menu">
-            <a href="/QL_chitieu/view/">Trang Chủ</a>
+            <a href="/QL_chitieu/view/index.html">Trang Chủ</a>
              <a href="/QL_chitieu/page/muctieu.html">Mục Tiêu Tiết Kiệm</a>
             <a href="/QL_chitieu/page/thongke.html">Báo Cáo Thống Kê</a>
         </div>
@@ -43,7 +123,7 @@
 
         </div>
     </div>
-    <script src="thongle.js"></script>
+    <script src="/QL_chitieu/page/thongle.js"></script>
     <script src="/QL_chitieu/view/script.js"></script>
 </body>
 
