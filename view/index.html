@@ -12,32 +12,37 @@
 
 <body>
     <!-- DANG NHAP -->
-    <div id="auth" class="container">
-        <div id="loginForm">
+    <div id="auth" class="container auth-wrapper">
+
+        <!-- Login -->
+        <div id="loginForm" class="auth-form active">
             <h2>Đăng nhập</h2>
             <input type="text" id="loginUser" placeholder="Tên đăng nhập">
             <input type="password" id="loginPass" placeholder="Mật khẩu">
             <button onclick="login()">
-                <i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
+                <i class="fas fa-sign-in-alt"></i> Đăng nhập
+            </button>
             <div class="link" onclick="showRegister()">
                 <i class="fas fa-user-plus"></i> Chưa có tài khoản? Đăng ký
             </div>
         </div>
 
-        <!-- DANG KY -->
-        <div id="registerForm" class="hidden">
+        <!-- Register -->
+        <div id="registerForm" class="auth-form hidden">
             <h2>Đăng ký</h2>
             <input type="text" id="regUser" placeholder="Tên đăng nhập">
             <input type="password" id="regPass" placeholder="Mật khẩu">
             <button onclick="register()">
-                <i class="fas fa-user-plus"></i> Đăng ký</button>
+                <i class="fas fa-user-plus"></i> Đăng ký
+            </button>
             <div class="link" onclick="showLogin()">
                 <i class="fas fa-sign-in-alt"></i> Đã có tài khoản? Đăng nhập
             </div>
         </div>
+
     </div>
 
-    <!-- Thong Bao -->
+    <!-- ALERT -->
     <div id="alertBox" class="alert hidden">
         <span id="alertMessage"></span>
         <span class="close-btn" onclick="closeAlert()">&times;</span>
@@ -63,29 +68,30 @@
                     <div class="info-box">
                         <h2>Thêm Chi Tiêu Mới</h2>
                         <div class="item">
-                            <label for="expenseNameInput"></label>
                             <input type="text" id="expenseNameInput" placeholder="Nhập tên khoản chi">
                         </div>
                         <div class="item">
-                            <label for="expenseInput"></label>
                             <input type="number" id="expenseInput" placeholder="Nhập số tiền" oninput="updateInfo()">
                         </div>
                         <div class="item">
-                            <input type="date" id="dateInput" placeholder="Ngày/Tháng/Năm">
+                            <input type="date" id="dateInput">
                         </div>
                         <button class="add-expense-btn" onclick="addExpense()">Thêm Chi Tiêu</button>
                     </div>
+
                     <div class="totals-container">
                         <h2>Tổng Chi Tiêu</h2>
                         <p>Hôm nay: <span id="todayTotal">0đ</span></p>
                         <p>Trong tháng: <span id="monthTotal">0đ</span></p>
                     </div>
                 </div>
+
                 <div class="expense-list-container">
                     <h2>Chi tiêu theo ngày</h2>
                     <div id="expenseList"></div>
                 </div>
             </div>
+
             <div id="confirmBox" class="hidden">
                 <span id="confirmMessage">Bạn có chắc muốn xóa khoản chi này?</span>
                 <div class="button-group">
@@ -95,6 +101,7 @@
             </div>
         </div>
     </div>
+
     <script src="/QL_chitieu/view/script.js"></script>
 </body>
 

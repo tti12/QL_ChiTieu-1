@@ -48,6 +48,47 @@ body.center-body {
         box-shadow 0.4s ease;
 }
 
+/* LOGIN / REGISTER SLIDE */
+
+
+.auth-wrapper {
+    position: relative;
+    width: 350px;
+    height: 380px;
+    overflow: hidden;
+}
+
+/* Hai form đăng nhập & đăng ký */
+.auth-form {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+    opacity: 1;
+}
+
+/* Form bị ẩn */
+.auth-form.hidden {
+    opacity: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+}
+
+/* Form đang hiển thị */
+.auth-form.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Login trượt sang trái khi chuyển sang đăng ký */
+.auth-form.slide-left {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+
 /* ANIMATION */
 @keyframes test {
     from {
