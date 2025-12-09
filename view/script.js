@@ -22,7 +22,6 @@ function showLogin() {
 /* ============================================================
    XỬ LÝ ĐĂNG KÝ
 ============================================================ */
-
 function register() {
     const user = document.getElementById('regUser').value.trim();
     const pass = document.getElementById('regPass').value.trim();
@@ -41,7 +40,7 @@ function register() {
 
     users.push({
         username: user,
-        password: btoa(pass)   // mã hóa password
+        password: btoa(pass) 
     });
 
     localStorage.setItem("users", JSON.stringify(users));
@@ -50,11 +49,9 @@ function register() {
     showLogin();
 }
 
-
 /* ============================================================
    XỬ LÝ ĐĂNG NHẬP
 ============================================================ */
-
 function login() {
     const user = document.getElementById('loginUser').value.trim();
     const pass = document.getElementById('loginPass').value.trim();
@@ -75,7 +72,6 @@ function login() {
         return;
     }
 
-    // Lưu trạng thái đăng nhập + user hiện tại
     localStorage.setItem("loggedInUser", user);
     loadUserExpenses();
     showMainUI();
@@ -84,7 +80,6 @@ function login() {
 /* ============================================================
    ĐĂNG XUẤT
 ============================================================ */
-
 function logout() {
     localStorage.removeItem("loggedInUser");
 
@@ -104,20 +99,17 @@ function logout() {
 }
 
 /* ============================================================
-   HIỂN THỊ GIAO DIỆN MAIN SAU KHI LOGIN
+   GIAO DIỆN MAIN SAU KHI LOGIN
 ============================================================ */
-
 function showMainUI() {
     document.getElementById('auth').classList.add('hidden');
     document.getElementById('main').classList.remove('hidden');
-
     document.body.classList.remove("center-body");
 }
 
 /* ============================================================
    ALERT BOX
 ============================================================ */
-
 function showAlert(message) {
     const alertBox = document.getElementById('alertBox');
     const alertMsg = document.getElementById('alertMessage');
@@ -134,11 +126,9 @@ function closeAlert() {
     document.getElementById('alertBox').classList.add('hidden');
 }
 
-
 /* ============================================================
-   CHI TIÊU — LƯU THEO TỪNG TÀI KHOẢN
+   CHI TIÊU — LƯU THEO USER
 ============================================================ */
-
 let expenses = [];
 
 function getCurrentUser() {
@@ -149,20 +139,19 @@ function getExpenseKey() {
     return "expenses_" + getCurrentUser();
 }
 
-/* --- Load chi tiêu của user hiện tại --- */
 function loadUserExpenses() {
-    const key = getExpenseKey();
-    expenses = JSON.parse(localStorage.getItem(key) || "[]");
+    expenses = JSON.parse(localStorage.getItem(getExpenseKey()) || "[]");
     renderExpenses();
     updateTotals();
 }
 
-/* --- Lưu chi tiêu --- */
 function saveUserExpenses() {
     localStorage.setItem(getExpenseKey(), JSON.stringify(expenses));
 }
 
-/* --- Thêm chi tiêu --- */
+/* ============================================================
+   THÊM CHI TIÊU
+============================================================ */
 function addExpense() {
     const name = document.getElementById("expenseNameInput").value.trim();
     const amount = parseFloat(document.getElementById("expenseInput").value);
@@ -183,37 +172,34 @@ function addExpense() {
     updateTotals();
 }
 
-
-/* --- Hiển thị danh sách chi tiêu --- */
+/* ============================================================
+   HIỂN THỊ CHI TIÊU
+============================================================ */
 function renderExpenses() {
     const list = document.getElementById("expenseList");
     list.innerHTML = "";
 
-    // nhóm theo ngày
     const group = {};
+
     expenses.forEach((exp, index) => {
         if (!group[exp.date]) group[exp.date] = [];
         group[exp.date].push({ ...exp, index });
     });
 
-    // hiển thị từng ngày
     for (const date in group) {
         const [y, m, d] = date.split("-");
-        const formattedDate = `${d}-${m}-${y}`;
+        const formatted = `${d}-${m}-${y}`;
 
-        // container cho ngày và các khoản chi
-        const dayContainer = document.createElement("div");
-        dayContainer.className = "day-container";
+        const dayBox = document.createElement("div");
+        dayBox.className = "day-container";
 
-        // cột ngày bên trái
         const dateCol = document.createElement("div");
         dateCol.className = "date-col";
-        dateCol.innerHTML = `<h3 class="day-title">${formattedDate}</h3>`; // đặt h3 ngay trong cột
-        dayContainer.appendChild(dateCol);
+        dateCol.innerHTML = `<h3 class="day-title">${formatted}</h3>`;
+        dayBox.appendChild(dateCol);
 
-        // cột danh sách khoản chi bên phải
-        const expensesCol = document.createElement("div");
-        expensesCol.className = "expenses-col";
+        const expCol = document.createElement("div");
+        expCol.className = "expenses-col";
 
         group[date].forEach(exp => {
             const div = document.createElement("div");
@@ -223,37 +209,33 @@ function renderExpenses() {
                 <div class="exp-left">
                     <div class="exp-name">Tên khoản chi: ${exp.name}</div>
                 </div>
+
                 <div class="exp-right">
-                    <div class="exp-amount">Số tiền: ${exp.amount.toLocaleString('vi-VN')}đ</div>
+                    <div class="exp-amount">${exp.amount.toLocaleString('vi-VN')}đ</div>
                 </div>
 
-                <button class="delete-btn" onclick="deleteExpense(${exp.index})">
+                <button class="delete-btn" onclick="confirmDelete(${exp.index})">
                     <i class="fas fa-trash"></i>
                 </button>
-                
             `;
-            div.addEventListener("click", () => {
-                div.classList.toggle("active");
-            });
 
-            expensesCol.appendChild(div);
+            expCol.appendChild(div);
         });
-        dayContainer.appendChild(expensesCol);
-        list.appendChild(dayContainer);
+
+        dayBox.appendChild(expCol);
+        list.appendChild(dayBox);
     }
 }
-//xoa chi tiêu
-function deleteExpense(index) {
+
+/* ============================================================
+   XÓA CHI TIÊU (HIỆN CONFIRM BOX)
+============================================================ */
+function confirmDelete(index) {
     const confirmBox = document.getElementById("confirmBox");
     confirmBox.classList.remove("hidden");
 
-    // Xử lý khi nhấn Xóa
-    const yesBtn = document.getElementById("confirmYes");
-    const noBtn = document.getElementById("confirmNo");
-
-    // remove previous listeners để tránh nhiều lần click
-    yesBtn.onclick = () => {
-        expenses.splice(index, 1);   // xóa item
+    document.getElementById("confirmYes").onclick = () => {
+        expenses.splice(index, 1);
         saveUserExpenses();
         renderExpenses();
         updateTotals();
@@ -261,28 +243,31 @@ function deleteExpense(index) {
         showAlert("Xóa thành công!");
     };
 
-    // hủy
-    noBtn.onclick = () => {
+    document.getElementById("confirmNo").onclick = () => {
         confirmBox.classList.add("hidden");
     };
 }
 
-
-/* --- Tính tổng chi tiêu --- */
+/* ============================================================
+   TÍNH TỔNG THEO NGÀY & THÁNG
+============================================================ */
 function updateTotals() {
     const today = getToday();
     const month = getMonth();
 
     const todayTotal = expenses
         .filter(e => e.date === today)
-        .reduce((sum, e) => sum + e.amount, 0);
+        .reduce((s, e) => s + e.amount, 0);
 
     const monthTotal = expenses
         .filter(e => e.date.startsWith(month))
-        .reduce((sum, e) => sum + e.amount, 0);
+        .reduce((s, e) => s + e.amount, 0);
 
-    document.getElementById("todayTotal").innerText = todayTotal + "đ";
-    document.getElementById("monthTotal").innerText = monthTotal + "đ";
+    document.getElementById("todayTotal").innerText =
+        todayTotal.toLocaleString('vi-VN') + "đ";
+
+    document.getElementById("monthTotal").innerText =
+        monthTotal.toLocaleString('vi-VN') + "đ";
 }
 
 function getToday() {
@@ -294,9 +279,8 @@ function getMonth() {
 }
 
 /* ============================================================
-   WINDOW.ONLOAD
+   WINDOW LOAD
 ============================================================ */
-
 window.onload = () => {
     const user = getCurrentUser();
 
