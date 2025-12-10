@@ -79,6 +79,8 @@ body.center-body {
     backface-visibility: hidden;
     background: linear-gradient(135deg, #2d3561 0%, #1a1a2e 100%);
     padding: 36px;
+    /* add extra bottom padding so the link/icon doesn't touch the card border */
+    padding-bottom: 50px;
     border-radius: 16px;
     box-shadow: 0 18px 50px rgba(0,0,0,0.55);
     text-align: center;
@@ -209,11 +211,16 @@ body.center-body {
 }
 
 .auth-face .link {
-    margin-top: 0;
+    margin: 0; /* reset top margin — spacing handled by flex distribution */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 14px;
     color: #87cefa;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding-bottom: 6px; /* small gap from card bottom */
 }
 
 .auth-face .link:hover {
